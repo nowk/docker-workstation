@@ -1,0 +1,38 @@
+version: '2.0'
+
+services:
+  workstation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - username=${USERNAME}
+        - password=${PASSWORD}
+    entrypoint: /usr/bin/zsh
+    volumes_from:
+      - golang1.11
+      - nodejs10.15.1
+    volumes:
+      - ~/:/home/${USERNAME}
+      - /var/run/docker.sock:/var/run/docker.sock
+    hostname: docker-workstation
+
+
+  # Development languages
+  # volumes for language mounts are created below
+
+  golang1.11:
+    image: golang:1.11
+    volumes:
+      - /usr/local/go
+      - /src/go/bin
+      - /src/go/pkg
+
+  nodejs10.15.1:
+    image: node:10.15.1
+    volumes:
+      - /usr/src/node_modules
+      - /usr/local/bin
+      - /usr/local/lib/node_modules
+      - /opt
+
