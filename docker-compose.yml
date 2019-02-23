@@ -14,7 +14,7 @@ services:
       - golang1.11
       - nodejs10.15.1
     volumes:
-      - ~/:/home/${USERNAME}
+      - ${HOME_PATH}:/home/${USERNAME}
       # - /usr/local/bin
       - /var/run/docker.sock:/var/run/docker.sock
       - /src:/src
