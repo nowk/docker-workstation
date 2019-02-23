@@ -8,14 +8,21 @@ services:
       args:
         - username=${USERNAME}
         - password=${PASSWORD}
-    entrypoint: /usr/bin/zsh
+    # entrypoint: /usr/bin/zsh
+    command: tail -f /dev/null
     volumes_from:
       - golang1.11
       - nodejs10.15.1
     volumes:
       - ~/:/home/${USERNAME}
+      # - /usr/local/bin
       - /var/run/docker.sock:/var/run/docker.sock
+      - /src:/src
     hostname: docker-workstation
+    ports:
+      - 60001-60011:60001-60011/udp
+    environment:
+      - GOPATH=/src/go
 
 
   # Development languages

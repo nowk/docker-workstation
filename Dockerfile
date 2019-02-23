@@ -5,6 +5,7 @@ ENV DOCKER_WORKSTATION_VERSION 0.1.0
 
 # TODO should this be done through a local profile when you load your shell?
 ENV PATH "/src/go/bin:/usr/local/go/bin:${PATH}"
+ENV LANG en_US.UTF-8
 
 # Core dependencies
 RUN \
@@ -16,7 +17,13 @@ RUN \
 		make \
 		build-essential \
 		cmake \
-		python3-dev
+		python3-dev \
+		mosh \
+		lsof \
+		locales \
+		htop \
+	&& \
+	locale-gen en_US.UTF-8
 
 # Development dependencies
 RUN \
@@ -56,7 +63,12 @@ RUN \
 	apt-get install -y \
 		docker-ce \
 		docker-ce-cli \
-		containerd.io
+		containerd.io \
+	&& \
+	curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" \
+		-o /usr/bin/docker-compose \
+	&& \
+	chmod +x /usr/bin/docker-compose
 
 ARG username
 ARG password
