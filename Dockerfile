@@ -74,6 +74,7 @@ ARG username
 ARG password
 ARG u_id
 ARG g_id
+ARG host_docker_group_id
 
 # Create a non-root user
 # NOTE whois is for password encryption
@@ -84,7 +85,9 @@ RUN \
 	&& \
 	PASSWORD=$(mkpasswd -m sha-512 $username) \
 	&& \
-	groupadd $username -g $g_id \
+	groupadd hostdocker -f -g $host_docker_group_id \
+	&& \
+	groupadd $username -f -g $g_id \
 	&& \
 	useradd \
 		--create-home \
@@ -93,6 +96,8 @@ RUN \
 		--shell /usr/bin/zsh \
 		--password $PASSWORD \
 		$username \
+	&& \
+	usermod -aG hostdocker $username \
 	&& \
 	echo "$username ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$username \
 	&& \
