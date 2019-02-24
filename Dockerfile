@@ -84,10 +84,12 @@ RUN \
 	&& \
 	PASSWORD=$(mkpasswd -m sha-512 $username) \
 	&& \
+	groupadd $username -g $g_id \
+	&& \
 	useradd \
 		--create-home \
-		--uid $g_id \
-		--gid $g_id \
+		-u $u_id \
+		-g $g_id \
 		--shell /usr/bin/zsh \
 		--password $PASSWORD \
 		$username \
