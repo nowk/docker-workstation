@@ -72,12 +72,11 @@ RUN \
 
 ARG username
 ARG password
+ARG u_id
+ARG g_id
 
 # Create a non-root user
 # NOTE whois is for password encryption
-#
-# TODO we may need the ability to set uid and gid, depend on which linux you
-# are on it may start a non-root at a different level and not 1000
 RUN \
 	apt-get install -y \
 		sudo \
@@ -87,6 +86,8 @@ RUN \
 	&& \
 	useradd \
 		--create-home \
+		--uid $g_id \
+		--gid $g_id \
 		--shell /usr/bin/zsh \
 		--password $PASSWORD \
 		$username \

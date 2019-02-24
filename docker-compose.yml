@@ -8,6 +8,8 @@ services:
       args:
         - username=${USERNAME}
         - password=${PASSWORD}
+        - u_id=${USER_ID}
+        - g_id=${GROUP_ID}
     # entrypoint: /usr/bin/zsh
     command: tail -f /dev/null
     volumes_from:
