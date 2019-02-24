@@ -17,7 +17,7 @@ services:
       - ${HOME_PATH}:/home/${USERNAME}
       # - /usr/local/bin
       - /var/run/docker.sock:/var/run/docker.sock
-      - /src:/src
+      - ${SRC_PATH}:/src
     hostname: docker-workstation
     ports:
       - 60001-60011:60001-60011/udp
