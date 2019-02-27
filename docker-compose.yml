@@ -20,6 +20,7 @@ services:
       - ${HOME_PATH}:/home/${USERNAME}
       # - /usr/local/bin
       - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp:/tmp
       - ${SRC_PATH}:${SRC_PATH}
     hostname: docker-workstation
     ports:
