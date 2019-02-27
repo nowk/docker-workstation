@@ -13,6 +13,7 @@ services:
         - host_docker_group_id=${HOST_DOCKER_GROUP_ID}
     # entrypoint: /usr/bin/zsh
     command: tail -f /dev/null
+    user: ${USERNAME}
     volumes_from:
       - golang1.11
       - nodejs10.15.1
