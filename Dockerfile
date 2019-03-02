@@ -18,6 +18,7 @@ RUN \
 		build-essential \
 		cmake \
 		python3-dev \
+		python3-pip \
 		mosh \
 		lsof \
 		locales \
@@ -28,12 +29,19 @@ RUN \
 
 # Development dependencies
 RUN \
+	add-apt-repository ppa:neovim-ppa/stable \
+	&& \
+	apt-get update \
+	&& \
 	apt-get install -y \
 		zsh \
+		neovim \
 		vim \
 		silversearcher-ag \
 		tmux \
-		tig
+		tig \
+	&& \
+	pip3 install --user pynvim
 
 # Install Docker
 RUN \
