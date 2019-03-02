@@ -27,7 +27,7 @@ services:
     ports:
       - 60001-60011:60001-60011/udp
     environment:
-      - GOPATH=/src/go
+      - GOPATH=/mnt/src/go
 
 
   # Development languages
