@@ -83,7 +83,7 @@ RUN \
 	curl -L "https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd6" \
 		-o /usr/local/bin/dumb-init \
 	&& \
-	chmod +x /usr/local/bin/dumb-init \
+	chmod +x /usr/local/bin/dumb-init
 
 ARG username
 ARG password
