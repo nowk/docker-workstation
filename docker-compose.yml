@@ -11,7 +11,7 @@ services:
         - u_id=${USER_ID}
         - g_id=${GROUP_ID}
         - host_docker_group_id=${HOST_DOCKER_GROUP_ID}
-    # entrypoint: /usr/bin/zsh
+    entrypoint: /usr/local/bin/dumb-init
     command: tail -f /dev/null
     user: ${USERNAME}
     volumes_from:
